@@ -1,13 +1,14 @@
-import pygame
 import sys
+
+import pygame
+
 import constants
-from logger import log_state
-from logger import log_event
-from player import Player
 from asteroid import Asteroid
 from asteroid_field import AsteroidField
-from shot import Shot
 from game_colors import BACKGROUND_COLOR
+from logger import log_event, log_state
+from player import Player
+from shot import Shot
 
 
 def main():

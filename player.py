@@ -7,6 +7,8 @@ from constants import (
     PLAYER_SHOOT_SPEED,
     PLAYER_TURN_SPEED,
     PLAYER_SPEED,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
     SHOT_RADIUS,
 )
 from game_colors import PLAYER_COLOR
@@ -31,9 +33,16 @@ class Player(CircleShape):
         triangle_points = self.triangle()
         pygame.draw.polygon(screen, PLAYER_COLOR, triangle_points, LINE_WIDTH)
 
+    def wrap(self):
+        x, y = self.position
+        wraped_x = x % SCREEN_WIDTH
+        wraped_y = y % SCREEN_HEIGHT
+        self.position = pygame.Vector2(wraped_x, wraped_y)
+        # print(f"x:{wraped_x} y:{wraped_y}")
+
     def update(self, dt):
         self.shot_cooldown -= dt
-
+        self.wrap()
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
